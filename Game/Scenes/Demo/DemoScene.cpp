@@ -1,74 +1,75 @@
-﻿//#include "DemoScene.h"
-//
-//#include <random>
-//
-//#include "AssetsModule.h"
-//#include "SpriteRenderer.h"
-//#include "SquareCollider.h"
-//#include "TextRenderer.h"
-//#include "Texture.h"
-//#include "WindowModule.h"
-//
-//Demo::DemoScene::DemoScene(): Scene("DemoScene") {
-//	GameObject* background = CreateGameObject("Background");
-//#include "Demo/TileCounter.h"
-//#include "Demo/TileSpawner.h"
-//
-//	GameObject* player = CreateGameObject("Player");
-//	player->CreateComponent<BulletHell::Player>(300.f, 550.f);
-//
-//	GameObject* enemy = CreateGameObject("Enemy");
-//	enemy->CreateComponent<BulletHell::Enemy>(300.f, 350.f);
-//
-//	AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
-//	Texture* texturePlayer = assets_module->LoadAsset<Texture>("playerShip.png");
-//	Texture* textureBackground = assets_module->LoadAsset<Texture>("wallpaperVoxel.jpg");
-//Demo::DemoScene::DemoScene(): Scene("DemoScene")
+﻿#include "demoscene.h"
+#include <random>
+#include "assetsmodule.h"
+#include "spriterenderer.h"
+#include "squarecollider.h"
+#include "textrenderer.h"
+#include "texture.h"
+#include "windowmodule.h"
+
+#include "demo/tilecounter.h"
+#include "demo/tilespawner.h"
+
+//demo::demoscene::demoscene(): scene("demoscene") 
 //{
-//    AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
-//    Texture* logo_texture = assets_module->LoadAsset<Texture>("Engine/sfml_logo.png");
+//	gameobject* background = creategameobject("background");
 //
-//	player->CreateComponent<SpriteRenderer>(texturePlayer);
-//	background->CreateComponent<SpriteRenderer>(textureBackground);
+//	gameobject* player = creategameobject("player");
+//	player->createcomponent<bullethell::player>(300.f, 550.f);
+//
+//	gameobject* enemy = creategameobject("enemy");
+//	enemy->createcomponent<bullethell::enemy>(300.f, 350.f);
+//
+//	assetsmodule* assets_module = engine::getinstance()->getmodulemanager()->getmodule<assetsmodule>();
+//	texture* textureplayer = assets_module->loadasset<texture>("playership.png");
+//	texture* texturebackground = assets_module->loadasset<texture>("wallpapervoxel.jpg");
+//
+//demo::demoscene::demoscene(): scene("demoscene")
+//{
+//    assetsmodule* assets_module = engine::getinstance()->getmodulemanager()->getmodule<assetsmodule>();
+//    texture* logo_texture = assets_module->loadasset<texture>("engine/sfml_logo.png");
+//
+//	player->createcomponent<spriterenderer>(textureplayer);
+//	background->createcomponent<spriterenderer>(texturebackground);
 //}
+
+//gameobject* demo::demoscene::createdummygameobject(const std::string& _name, const float _position, const sf::color _color) {
+//    gameobject* game_object = creategameobject(_name);
+//    game_object->setposition(maths::vector2f(_position, _position));
 //
-//GameObject* Demo::DemoScene::CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color) {
-//    GameObject* game_object = CreateGameObject(_name);
-//    game_object->SetPosition(Maths::Vector2f(_position, _position));
+//    squarecollider* square_collider = game_object->createcomponent<squarecollider>();
+//    square_collider->setwidth(20.f);
+//    square_collider->setheight(20.f);
 //
-//    SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
-//    square_collider->SetWidth(20.f);
-//    square_collider->SetHeight(20.f);
-//
-//    RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
-//    shape_renderer->SetColor(_color);
-//    shape_renderer->SetSize(Maths::Vector2f(200.f, 200.f));
-//    GameObject* const& logo = CreateGameObject("SFML Logo");
-//    logo->CreateComponent<SpriteRenderer>(logo_texture, false);
+//    rectangleshaperenderer* shape_renderer = game_object->createcomponent<rectangleshaperenderer>();
+//    shape_renderer->setcolor(_color);
+//    shape_renderer->setsize(maths::vector2f(200.f, 200.f));
+//    gameobject* const& logo = creategameobject("sfml logo");
+//    logo->createcomponent<spriterenderer>(logo_texture, false);
 //
 //    return game_object;
 //}
-//
-//void Demo::DemoScene::ShouldCreateBullet()
+
+//void demo::demoscene::shouldcreatebullet()
 //{
-//	if (bulletCount <= 100)
+//	if (bulletcount <= 100)
 //	{
-//		Logger::Log(ELogLevel::Debug, "Shoot avec succes");
+//		logger::log(eloglevel::debug, "shoot avec succes");
 //
-//		GameObject* bullet = CreateGameObject("Bullet");
-//		SquareCollider* square_collider = bullet->CreateComponent<SquareCollider>();
-//		square_collider->SetWidth(40.f);
-//		square_collider->SetHeight(20.f);
+//		gameobject* bullet = creategameobject("bullet");
+//		squarecollider* square_collider = bullet->createcomponent<squarecollider>();
+//		square_collider->setwidth(40.f);
+//		square_collider->setheight(20.f);
 //
-//		RectangleShapeRenderer* shape_renderer = bullet->CreateComponent<RectangleShapeRenderer>();
-//		shape_renderer->SetColor(sf::Color::Green);
-//		shape_renderer->SetSize(Maths::Vector2f(40.f, 20.f));
+//		rectangleshaperenderer* shape_renderer = bullet->createcomponent<rectangleshaperenderer>();
+//		shape_renderer->setcolor(sf::color::green);
+//		shape_renderer->setsize(maths::vector2f(40.f, 20.f));
 //
-//		bullet->CreateComponent<BulletHell::Bullet>(100.f, 400.f, 400.f);
+//		bullet->createcomponent<bullethell::bullet>(100.f, 400.f, 400.f);
 //	}
 //}
-//    GameObject* tile_spawner = CreateGameObject("TileSpawner");
-//    tile_spawner->CreateComponent<TileSpawner>();
-//    tile_spawner->CreateComponent<TileCounter>();
-//    tile_spawner->SetPosition({200, 0});
+//    gameobject* tile_spawner = creategameobject("tilespawner");
+//    tile_spawner->createcomponent<tilespawner>();
+//    tile_spawner->createcomponent<tilecounter>();
+//    tile_spawner->setposition({200, 0});
 //}
