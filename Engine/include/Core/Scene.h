@@ -23,13 +23,15 @@ public:
     void OnDebug() const;
     void OnDebugSelected() const;
     void PostRender() const;
-    void Present() const;
+    void Present();
+
+    void FlushPending();
 
     void OnEnable() const;
     void OnDisable() const;
 
     void Destroy() const;
-    void Finalize() const;
+    void Finalize();
 
     const std::string& GetName() const;
 
@@ -53,6 +55,8 @@ private:
 
     std::string name;
     std::vector<std::unique_ptr<GameObject>> gameObjects;
+
+    std::vector<std::unique_ptr<GameObject>> pendingGameObjects;
 
     bool enabled = true;
 

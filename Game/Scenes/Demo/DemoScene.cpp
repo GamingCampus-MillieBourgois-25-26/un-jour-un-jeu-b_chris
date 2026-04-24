@@ -1,13 +1,18 @@
 ﻿#include "DemoScene.h"
 
+#include <random>
+
 #include "AssetsModule.h"
-#include "RectangleShapeRenderer.h"
 #include "SpriteRenderer.h"
 #include "SquareCollider.h"
+#include "TextRenderer.h"
 #include "Texture.h"
+#include "WindowModule.h"
 
 Demo::DemoScene::DemoScene(): Scene("DemoScene") {
 	GameObject* background = CreateGameObject("Background");
+#include "Demo/TileCounter.h"
+#include "Demo/TileSpawner.h"
 
 	GameObject* player = CreateGameObject("Player");
 	player->CreateComponent<BulletHell::Player>(300.f, 550.f);
@@ -18,6 +23,10 @@ Demo::DemoScene::DemoScene(): Scene("DemoScene") {
 	AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
 	Texture* texturePlayer = assets_module->LoadAsset<Texture>("playerShip.png");
 	Texture* textureBackground = assets_module->LoadAsset<Texture>("wallpaperVoxel.jpg");
+Demo::DemoScene::DemoScene(): Scene("DemoScene")
+{
+    AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
+    Texture* logo_texture = assets_module->LoadAsset<Texture>("Engine/sfml_logo.png");
 
 	player->CreateComponent<SpriteRenderer>(texturePlayer);
 	background->CreateComponent<SpriteRenderer>(textureBackground);
@@ -34,6 +43,8 @@ GameObject* Demo::DemoScene::CreateDummyGameObject(const std::string& _name, con
     RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
     shape_renderer->SetColor(_color);
     shape_renderer->SetSize(Maths::Vector2f(200.f, 200.f));
+    GameObject* const& logo = CreateGameObject("SFML Logo");
+    logo->CreateComponent<SpriteRenderer>(logo_texture, false);
 
     return game_object;
 }
@@ -55,4 +66,9 @@ void Demo::DemoScene::ShouldCreateBullet()
 
 		bullet->CreateComponent<BulletHell::Bullet>(100.f, 400.f, 400.f);
 	}
+}
+    GameObject* tile_spawner = CreateGameObject("TileSpawner");
+    tile_spawner->CreateComponent<TileSpawner>();
+    tile_spawner->CreateComponent<TileCounter>();
+    tile_spawner->SetPosition({200, 0});
 }

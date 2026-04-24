@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Core/Component.h"
 #include "InputModule.h"
 #include "SquareCollider.h"
