@@ -4,6 +4,7 @@
 #include <AssetsModule.h>
 #include <SpriteRenderer.h>
 #include <SquareCollider.h>
+#include <TextRenderer.h>
 
 #include <Clicker/Donut.h>
 #include <Clicker/Score.h>

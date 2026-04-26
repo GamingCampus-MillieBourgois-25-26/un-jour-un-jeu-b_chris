@@ -1,5 +1,4 @@
 #include "Clicker/ClickerLevel.h"
-#include <TextRenderer.h>
 
 Clicker::ClickerLevel::ClickerLevel() : Scene("TowerLevel")
 {
@@ -11,6 +10,10 @@ Clicker::ClickerLevel::ClickerLevel() : Scene("TowerLevel")
 	Texture* textureDonut_Brown = assets_module->LoadAsset<Texture>("Clicker/donut_brown.png");
 	Texture* textureDonut_Black = assets_module->LoadAsset<Texture>("Clicker/donut_black.png");
 	Texture* textureGlazing_Green = assets_module->LoadAsset<Texture>("Clicker/green_glazing.png");
+	Texture* textureBackground = assets_module->LoadAsset<Texture>("wallpaperVoxel.jpg");
+
+	GameObject* background = CreateGameObject("Background");
+	background->CreateComponent<SpriteRenderer>(textureBackground);
 
 	GameObject* donut = CreateGameObject("Donut");
 	float spriteSize = 264.f;
@@ -49,6 +52,6 @@ Clicker::ClickerLevel::ClickerLevel() : Scene("TowerLevel")
 	score->CreateComponent<TextRenderer>("Engine/Inter-VariableFont_opsz,wght.ttf");
 	score->GetComponent<TextRenderer>()->SetCharacterSize(24);
 	score->GetComponent<TextRenderer>()->SetText("Points : 0");
-	score->GetComponent<TextRenderer>()->SetColor(sf::Color::White);
+	score->GetComponent<TextRenderer>()->SetColor(sf::Color::Black);
 	score->SetPosition({ donut->GetPosition().x - 100.f, donut->GetPosition().y - 100.f });
 }
