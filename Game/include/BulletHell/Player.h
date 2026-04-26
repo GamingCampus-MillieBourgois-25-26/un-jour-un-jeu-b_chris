@@ -5,6 +5,8 @@
 #include "SquareCollider.h"
 #include "Bullet.h"
 #include <memory>
+#include <AssetsModule.h>
+#include <SpriteRenderer.h>
 
 namespace BulletHell
 {
@@ -56,8 +58,16 @@ namespace BulletHell
 				Engine::GetInstance()->RequestQuit();
 			}
 
-			if (InputModule::GetMouseButton(sf::Mouse::Button::Left) && cooldown.getElapsedTime().asSeconds() >= 0.1f) {
+			if (InputModule::GetMouseButton(sf::Mouse::Button::Left) && cooldown.getElapsedTime().asSeconds() >= 0.09f) {
 				Logger::Log(ELogLevel::Debug, "Bullet tirer");
+
+				AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
+				Texture* textureBullet = assets_module->GetAsset<Texture>("BulletHell/Bullet_Small.png");
+
+				GameObject* bullet = GetOwner()->GetScene()->CreateGameObject("Bullet");
+				bullet->CreateComponent<SpriteRenderer>(textureBullet);
+				bullet->CreateComponent<Bullet>(300.f, 400.f, 400.f); // Gère le déplacement de la bullet.
+				bullet->SetPosition({ GetOwner()->GetPosition().x, GetOwner()->GetPosition().y - 30.f });
 				cooldown.restart();
 			}
 		}
