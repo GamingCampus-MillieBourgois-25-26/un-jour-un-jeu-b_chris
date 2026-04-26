@@ -1,20 +1,21 @@
 #pragma once
-#include "Core/Component.h"
+#include <memory>
+
+#include "Component.h"
 #include "InputModule.h"
 #include "SquareCollider.h"
-#include "Bullet.h"
-#include <memory>
+#include "BulletHell/Bullet.h"
 
 namespace BulletHell
 {
-	class Enemy : public Component
+	class EnemyBulletHell : public Component
 	{
 	private:
 		sf::Clock cooldown;
 		float positionX;
 		float positionY;
 	public:
-		Enemy(float _positionX, float _positionY)
+		EnemyBulletHell(float _positionX, float _positionY)
 		{
 			positionX = _positionX;
 			positionY = _positionY;
@@ -27,7 +28,7 @@ namespace BulletHell
 
 		void Update(const float _delta_time) override
 		{
-			if (cooldown.getElapsedTime().asSeconds() >= 10000.1f) {
+			if (cooldown.getElapsedTime().asSeconds() >= 10000.f) {
 				Logger::Log(ELogLevel::Debug, "Bullet ennemi tirer");
 				cooldown.restart();
 			}

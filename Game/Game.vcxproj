@@ -44,8 +44,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"/>
-
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
   <PropertyGroup>
     <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(SolutionDir)include;$(ExternalIncludePath)</ExternalIncludePath>
@@ -58,13 +57,11 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>$(SolutionDir)</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
-
   <ItemDefinitionGroup>
     <Link>
       <AdditionalOptions>/IGNORE:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
-  
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -102,7 +99,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Source\BulletHell\BulletHellLevel.cpp" />
+    <ClCompile Include="Source\BulletHell\Bullet.cpp" />
+    <ClCompile Include="Source\BulletHell\EnemyBulletHell.cpp" />
     <ClCompile Include="Source\Clicker\ShopUpgrade.cpp" />
     <ClCompile Include="Source\Clicker\Donut.cpp" />
     <ClCompile Include="Source\Clicker\Score.cpp" />
@@ -118,11 +117,13 @@
     <ClCompile Include="Source\Clicker\Upgrade.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="include\BulletHell\BulletHellLevel.h" />
     <ClInclude Include="include\Clicker\Donut.h" />
     <ClInclude Include="include\Clicker\ClickerLevel.h" />
+    <ClInclude Include="include\BulletHell\Bullet.h" />
+    <ClInclude Include="include\BulletHell\EnemyBulletHell.h" />
     <ClInclude Include="include\TowerDefense\Enemy.h" />
-    <ClInclude Include="include\Demo\Player.h" />
+    <ClInclude Include="include\BulletHell\Player.h" />
     <ClInclude Include="include\TowerDefense\Player.h" />
     <ClInclude Include="include\Demo\Tile.h" />
     <ClInclude Include="include\Demo\TileCounter.h" />
