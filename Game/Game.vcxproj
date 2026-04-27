@@ -44,8 +44,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"/>
-
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
   <PropertyGroup>
     <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(SolutionDir)include;$(ExternalIncludePath)</ExternalIncludePath>
@@ -58,13 +57,11 @@
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerWorkingDirectory>$(SolutionDir)</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
-
   <ItemDefinitionGroup>
     <Link>
       <AdditionalOptions>/IGNORE:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
-  
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -103,6 +100,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Source\Match-3\PlayerMatch.cpp" />
+    <ClCompile Include="Source\Match-3\ScoreMatch.cpp" />
+    <ClCompile Include="Source\Match-3\MatchLevel.cpp" />
     <ClCompile Include="Source\Clicker\ShopUpgrade.cpp" />
     <ClCompile Include="Source\Clicker\Donut.cpp" />
     <ClCompile Include="Source\Clicker\Score.cpp" />
@@ -116,6 +116,7 @@
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
     <ClCompile Include="Source\TowerDefense\TowerLevel.cpp" />
     <ClCompile Include="Source\Clicker\Upgrade.cpp" />
+    <ClCompile Include="Source\Match-3\TileMatch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -127,12 +128,16 @@
     <ClInclude Include="include\Demo\Tile.h" />
     <ClInclude Include="include\Demo\TileCounter.h" />
     <ClInclude Include="include\Demo\TileSpawner.h" />
+    <ClInclude Include="include\Match-3\MatchLevel.h" />
+    <ClInclude Include="include\Match-3\PlayerMatch.h" />
     <ClInclude Include="Scenes\Demo\DemoScene.h" />
     <ClInclude Include="include\TowerDefense\TowerLevel.h" />
     <ClInclude Include="include\TowerDefense\Shop.h" />
     <ClInclude Include="include\Clicker\Score.h" />
     <ClInclude Include="include\Clicker\Upgrade.h" />
     <ClInclude Include="include\Clicker\ShopUpgrade.h" />
+    <ClInclude Include="include\Match-3\ScoreMatch.h" />
+    <ClInclude Include="include\Match-3\TileMatch.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
