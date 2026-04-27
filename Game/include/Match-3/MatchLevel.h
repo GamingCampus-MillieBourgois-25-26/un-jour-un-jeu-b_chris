@@ -12,7 +12,7 @@ namespace Match_3
 	{
 	private:
 		const float TEXTURE_SIZE = 45.f;
-		static const int BOARD_SIZE = 6;
+		static const int BOARD_SIZE = 2;
 
 		std::vector<GameObject> gameObjects;
 		GameObject* Tiles[BOARD_SIZE][BOARD_SIZE];

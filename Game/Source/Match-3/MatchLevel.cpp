@@ -19,25 +19,23 @@ Match_3::MatchLevel::MatchLevel() : Scene("MatchLevel")
 	GameObject* player = CreateGameObject("Player");
 	player->CreateComponent<PlayerMatch>();
 	SquareCollider* playerCollider = player->CreateComponent<SquareCollider>();
-	playerCollider->SetHeight(5.f);
-	playerCollider->SetWidth(5.f);
 
 	int id = 0;
 
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < BOARD_SIZE; i++)
 	{
-		for (int j = 0; j < 6; j++)
+		for (int j = 0; j < BOARD_SIZE; j++)
 		{
-
 			std::string id_str = std::to_string(id);
 			GameObject* tile = CreateGameObject("Tile" + id_str);
 			SpriteRenderer* spriteTile = tile->CreateComponent<SpriteRenderer>(textures[rand() % 3]);
+		
+			tile->CreateComponent<SquareCollider>();
+			tile->GetComponent<SquareCollider>()->SetWidth(45.f);
+			tile->GetComponent<SquareCollider>()->SetHeight(45.f);
+		
+			tile->SetPosition({ 45.f * j + 190.f, 45.f * i + 200.f });
 
-			SquareCollider* collisionTile = tile->CreateComponent<SquareCollider>();
-			collisionTile->SetWidth(TEXTURE_SIZE);
-			collisionTile->SetHeight(TEXTURE_SIZE);
-
-			tile->SetPosition({ TEXTURE_SIZE * j + 190.f, TEXTURE_SIZE * i + 200.f });
 			Tiles[i][j] = tile;
 			id++;
 		}

@@ -14,31 +14,47 @@ void PlayerMatch::Update(float deltaTime)
 
 	GetOwner()->SetPosition({ mousePositionX - 40.f, mousePositionY - 40.f });
 
-	if (InputModule::GetMouseButton(sf::Mouse::Button::Left)) 
-	{
-		if (id == 36) { id = 0; }
-		// Logger::Log(ELogLevel::Debug, "clic gauche");
-		SquareCollider* tileCollider = ReturnTileName(id);
-		// GetOwner()->GetComponent<SquareCollider>()->IsColliding(*GetOwner()->GetComponent<SquareCollider>(), *tileCollider);
+    if (InputModule::GetMouseButtonDown(sf::Mouse::Button::Left))
+    {
+        clickPosition = InputModule::GetMousePosition();
+        
+        for (int i = 0; i < BOARD_SIZE; i++)
+        {
+            for (int j = 0; j < BOARD_SIZE; j++)
+            {
+                SquareCollider* tileCollider = ReturnTileName(i + j);
 
-		bool isHoverTile = ownerCollider->IsColliding(*ownerCollider, *tileCollider);
+                if (ownerCollider->IsColliding(*ownerCollider, *tileCollider))
+                {
+                    selectedTile = tileCollider;
+                    isDragging = true;
+                    Logger::Log(ELogLevel::Debug, "Tile selectionnee : {},{}", i, j);
+                }
+            }
+        }
+    }
 
-		if (isHoverTile) {
-			Logger::Log(ELogLevel::Debug, "la collision marche");
-			// Inverse la tuile actuelle et la tuile gauche
-		}
-		else if (InputModule::GetMousePosition().x > mousePositionX + 45.f && isHoverTile) {
-			// Inverse la tuile actuelle et la tuile droite
-		}
-		else if (InputModule::GetMousePosition().y < mousePositionX - 45.f && isHoverTile) {
-			// Inverse la tuile actuelle et la tuile bas
-		}
-		else if (InputModule::GetMousePosition().y > mousePositionX + 45.f && isHoverTile) {
-			// Inverse la tuile actuelle et la tuile haut
-		}
+    if (isDragging && InputModule::GetMouseButton(sf::Mouse::Button::Left))
+    {
+        Maths::Vector2i currentMouse = InputModule::GetMousePosition();
+        float draggingX = currentMouse.x - clickPosition.x;
 
-		id++;
-	}
+        Logger::Log(ELogLevel::Debug, "dragging X = {}", draggingX);
+
+        if (draggingX < -20.f)
+        {
+            Logger::Log(ELogLevel::Debug, "Drag vers la gauche detecte");
+
+            // Action match-3 ici
+            isDragging = false;
+        }
+    }
+
+    if (InputModule::GetMouseButtonUp(sf::Mouse::Button::Left))
+    {
+        isDragging = false;
+        selectedTile = nullptr;
+    }
 }
 
 SquareCollider* PlayerMatch::ReturnTileName(int id)
