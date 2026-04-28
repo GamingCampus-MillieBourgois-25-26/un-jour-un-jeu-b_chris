@@ -1,5 +1,5 @@
 #include "BulletHell/BulletHellLevel.h"
-#include <BulletHell/Player.h>
+#include <BulletHell/PlayerBulletHell.h>
 #include <BulletHell/EnemyBulletHell.h>
 
 BulletHell::BulletHellLevel::BulletHellLevel() : Scene("BulletHellLevel")
@@ -10,10 +10,14 @@ BulletHell::BulletHellLevel::BulletHellLevel() : Scene("BulletHellLevel")
 	AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
 	Texture* texturePlayer = assets_module->LoadAsset<Texture>("BulletHell/playerShip.png");
 	Texture* textureBullet = assets_module->LoadAsset<Texture>("BulletHell/Bullet_Small.png");
+	Texture* textureBackground = assets_module->LoadAsset<Texture>(""); // Insérer un background.
+
+	GameObject* background = CreateGameObject("Background");
+	background->CreateComponent<SpriteRenderer>(textureBackground);
 
 	GameObject* player = CreateGameObject("Player");
 	player->CreateComponent<SpriteRenderer>(texturePlayer);
-	player->CreateComponent<Player>(300.f, 550.f);
+	player->CreateComponent<PlayerBulletHell>(300.f, 550.f);
 
 	GameObject* enemy = CreateGameObject("Enemy");
 	enemy->CreateComponent<SpriteRenderer>(texturePlayer);

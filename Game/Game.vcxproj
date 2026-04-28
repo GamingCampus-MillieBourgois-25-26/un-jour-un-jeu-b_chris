@@ -102,6 +102,7 @@
     <ClCompile Include="Source\BulletHell\BulletHellLevel.cpp" />
     <ClCompile Include="Source\BulletHell\Bullet.cpp" />
     <ClCompile Include="Source\BulletHell\EnemyBulletHell.cpp" />
+    <ClCompile Include="Source\BulletHell\PlayerBulletHell.cpp" />
     <ClCompile Include="Source\Clicker\ShopUpgrade.cpp" />
     <ClCompile Include="Source\Clicker\Donut.cpp" />
     <ClCompile Include="Source\Clicker\Score.cpp" />
@@ -123,7 +124,7 @@
     <ClInclude Include="include\BulletHell\Bullet.h" />
     <ClInclude Include="include\BulletHell\EnemyBulletHell.h" />
     <ClInclude Include="include\TowerDefense\Enemy.h" />
-    <ClInclude Include="include\BulletHell\Player.h" />
+    <ClInclude Include="include\BulletHell\PlayerBulletHell.h" />
     <ClInclude Include="include\TowerDefense\Player.h" />
     <ClInclude Include="include\Demo\Tile.h" />
     <ClInclude Include="include\Demo\TileCounter.h" />

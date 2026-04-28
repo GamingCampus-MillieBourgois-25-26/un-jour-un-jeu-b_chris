@@ -63,9 +63,12 @@
     <ClCompile Include="Source\BulletHell\EnemyBulletHell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\BulletHell\PlayerBulletHell.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\BulletHell\Player.h">
+    <ClInclude Include="include\BulletHell\PlayerBulletHell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\Demo\DemoScene.h">

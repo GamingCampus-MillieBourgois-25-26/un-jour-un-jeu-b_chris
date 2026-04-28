@@ -1,24 +1,24 @@
 #pragma once
 
-#include <memory>
-#include <AssetsModule.h>
-#include "SpriteRenderer.h"
-#include "Texture.h"
-#include "Component.h"
+#include "Core/Component.h"
 #include "InputModule.h"
 #include "SquareCollider.h"
-#include "BulletHell/Bullet.h"
+#include "Bullet.h"
+#include <memory>
+#include <AssetsModule.h>
+#include <SpriteRenderer.h>
 
 namespace BulletHell
 {
-	class EnemyBulletHell : public Component
+	class PlayerBulletHell : public Component
 	{
 	private:
 		sf::Clock cooldown;
+		int bulletCount;
 		float positionX;
 		float positionY;
 	public:
-		EnemyBulletHell(float _positionX, float _positionY)
+		PlayerBulletHell(float _positionX, float _positionY)
 		{
 			positionX = _positionX;
 			positionY = _positionY;
